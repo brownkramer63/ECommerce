@@ -2,16 +2,22 @@ package Discount;
 
 import java.util.UUID;
 
-public class AmountBAsedDiscount extends Discount{
+public class AmountBasedDiscount extends Discount{
 
+    private Double discountAmount;
 
-    public AmountBAsedDiscount(UUID id, String name, Double thresholdAmount) {
+    public AmountBasedDiscount(UUID id, String name, Double thresholdAmount, Double discountAmount) {
         super(id, name, thresholdAmount);
+        this.discountAmount = discountAmount;
     }
 
     @Override
-    public Double CalculateCartAmountAfterDiscountApplied(Double amount) {
-        return null;
+    public Double calculateCartAmountAfterDiscountApplied(Double amount) {
+        return amount - discountAmount;
+    }
+
+    public Double getDiscountAmount() {
+        return discountAmount;
     }
 
 

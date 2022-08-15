@@ -3,15 +3,22 @@ package Discount;
 import java.util.UUID;
 
 public class RateBased extends Discount{
-    private final Double rateAMount;
+    private Double rateAmount;
 
-    public RateBased(UUID id, String name, Double thresholdAmount, Double rateAMount) {
+
+    public RateBasedDiscount(UUID id, String name, Double thresholdAmount, Double rateAmount) {
         super(id, name, thresholdAmount);
-        this.rateAMount=rateAMount;
+        this.rateAmount = rateAmount;
     }
 
     @Override
-    public Double CalculateCartAmountAfterDiscountApplied(Double amount) {
-        return null;
+    public Double calculateCartAmountAfterDiscountApplied(Double amount) {
+        return amount - (amount * rateAmount / 100) ;
+
+        // 400 %15 = 340
+    }
+
+    public Double getRateAmount() {
+        return rateAmount;
     }
 }

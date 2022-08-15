@@ -14,7 +14,11 @@ public abstract class Discount {
         this.thresholdAmount = thresholdAmount;
     }
 
-    public abstract Double CalculateCartAmountAfterDiscountApplied(Double amount);
+    public boolean decideDiscountIsApplicableToCart(Cart cart){
+        return cart.calculateCartTotalAmount() > thresholdAmount;
+    }
+
+    public abstract Double calculateCartAmountAfterDiscountApplied(Double amount);
 
     public UUID getId() {
         return id;
@@ -27,9 +31,5 @@ public abstract class Discount {
     public Double getThresholdAmount() {
         return thresholdAmount;
     }
-
-
-
-
 
 }
