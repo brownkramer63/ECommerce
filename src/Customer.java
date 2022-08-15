@@ -4,12 +4,10 @@ import java.util.UUID;
 
 public class Customer {
 
-    private UUID    id;
-
+    private UUID id;
     private String userName;
     private String email;
-
-    private ArrayList<Address> address;
+    private List<Address> address;
 
     public Customer(UUID id, String userName, String email) {
         this.id = id;
@@ -17,7 +15,7 @@ public class Customer {
         this.email = email;
     }
 
-    public Customer(UUID id, String userName, String email, ArrayList<Address> address) {
+    public Customer(UUID id, String userName, String email, List<Address> address) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -36,20 +34,9 @@ public class Customer {
         return email;
     }
 
-    public ArrayList<Address> getAddress() {
+    public List<Address> getAddress() {
         return address;
     }
-
-
-
-
-    //type name;
-
-
-
-
-
-
 
 
 }

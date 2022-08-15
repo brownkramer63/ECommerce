@@ -5,20 +5,21 @@ import java.util.UUID;
 public class Product {
     private UUID id;
     private String name;
-    private double price;
+    private Double price;
     private Integer stock;
-    private Integer remainingstock;
-    private UUID categoryID;
+    private Integer remainingStock;
+    private UUID categoryId;
 
-
-    public Product(UUID id, String name, double price, Integer stock, Integer remainingstock, UUID categoryID) {
+    public Product(UUID id, String name, Double price, Integer stock, Integer remainingStock, UUID categoryId) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
-        this.remainingstock = remainingstock;
-        this.categoryID = categoryID;
+        this.remainingStock = remainingStock;
+        this.categoryId = categoryId;
     }
+
+
 
     public UUID getId() {
         return id;
@@ -28,7 +29,7 @@ public class Product {
         return name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -36,17 +37,35 @@ public class Product {
         return stock;
     }
 
-    public Integer getRemainingstock() {
-        return remainingstock;
+    public Integer getRemainingStock() {
+        return remainingStock;
     }
 
-    public UUID getCategoryID() {
-        return categoryID;
+    public void setRemainingStock(Integer remainingStock) {
+        this.remainingStock = remainingStock;
+    }
+    public UUID getCategoryId() {
+        return categoryId;
     }
 
+    public String getCategoryName() throws Exception {
 
+        for(Category category : StaticConstants.CATEGORY_LIST){
+            if(getCategoryId().toString().equals(category.getId().toString())){
+                return category.getName();
+            }
+        }
+        throw new Exception("Category not found," + getName());
 
+    }
 
-
+    public LocalDateTime getDeliveryDueDate() throws Exception {
+        for(Category category : StaticConstants.CATEGORY_LIST){
+            if(getCategoryId().toString().equals(category.getId().toString())){
+                return category.findDeliveryDueDate();
+            }
+        }
+        throw new Exception("Category could not find");
+    }
 
 }
